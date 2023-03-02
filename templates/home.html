@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<html>
+<body>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+
+  .text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .active, .dot:hover {
+    background-color: #717171;
+  }
+
+  body {font-family: Arial, Helvetica, sans-serif;}
+
+  h1{
+    text-align: center;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: #111;
+  }
+  
+  .active {
+    background-color: #04AA6D;
+  }
+  
+  
+  .navbar {
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  .navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  </style>
+
+{% if user.is_authenticated %}
+
+<ul>
+    <li><a class="active" href="{% url 'home' %}">Home</a></li>
+    <li><a href="{% url 'password_reset' %}">Reset Password</a> </li>
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+</ul>
+<br><br>
+You are logged in as {{user.username}}
+
+{% else %}
+<ul>
+    <li><a class="active" href="{% url 'home' %}">Home</a></li>
+    <li><a href="{% url 'login' %}">Login</a></li>
+    <li><a href="{% url 'signup' %}">Sign-Up</a></li>
+</ul>
+<br><br>
+
+You are not logged in. Please log in to continue!
+
+{% endif %}
+{% endblock %}
